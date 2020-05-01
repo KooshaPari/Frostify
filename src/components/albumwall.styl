@@ -1,0 +1,20 @@
+body[data-multi-select-disabled] {
+  z-index: -1;
+}
+#view-player {
+  z-index: -1;
+}
+#view-player .cover-image::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: block;
+  background-image: inherit !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  filter: blur(wb);
+  z-index: -1;
+  pointer-events: none;
+  opacity:var(--turn-album-wall-on);
+}

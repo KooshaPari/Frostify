@@ -1,0 +1,81 @@
+
+/* sidebar */
+#menu-wrapper, 
+.sidebar .sidebar-navbar {
+  background-color: transparent;
+}
+.sidebar {
+  backdrop-filter: blur(var(--blur));
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+.SidebarListItemLink:link,
+.SidebarListItemLink:visited {
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+a:hover:active,
+a:focus:active,
+a.contextmenu-active:active {
+  color: #eee;
+}
+.SidebarListItem--is-active::after,
+.RootlistItem--is-active::before {
+  background: var(--accent);
+}
+.LeftSidebar__scroll-section {
+  background-color: transparent;
+}
+.SidebarList__title {
+  text-align: center;
+  color: #eee !important;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+.SidebarListItemLink {
+  position: relative;
+}
+.SidebarListItemLink::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width linear .1s;
+}
+.SidebarListItemLink:hover::before {
+  width: 100%;
+}
+.Button--style-icon-background,
+.Button--style-icon-stroke {
+  background-color: rgba(0,0,0,0.7);
+  bottom: 0px !important;
+}
+.sidebar-top-items__drag-area {
+  position: relative;
+}
+.sidebar-top-items__drag-area::before,
+#view-buddy-list::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.7);
+  height: 47px;
+  pointer-events: none;
+  z-index: -1;
+}
+.LeftSidebarNewPlaylistButton__button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+.LeftSidebarNewPlaylistButton__button:active {
+  opacity: 1;
+  background-color: rgba(0,0,0,0.9)
+}
+.RootlistItemPlaylist__collaborative-icon {
+  fill: #fff;
+}

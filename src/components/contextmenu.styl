@@ -1,0 +1,19 @@
+/* context menus */
+.context-menu {
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: blur(var(--blur));
+  text-shadow: 1px 1px 1px #000;
+}
+.context-menu .sep {
+  background: var(--accent);
+}
+.context-menu .item {
+  color: #fff
+}
+.context-menu .item.hover:not(.disabled) {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.context-menu .item.disabled {
+  opacity: 1;
+  color: #aaa;
+}

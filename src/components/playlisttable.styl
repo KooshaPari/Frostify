@@ -1,0 +1,97 @@
+
+/* playlist table styles */
+.glue-page-header__content .glue-page-header__data,
+.glue-page-header__data span,
+.glue-page-header__content .glue-page-header__count-label {
+  text-shadow: 1px 1px 1px #000;
+  color: #fff !important;
+}
+.glue-page-header__content .glue-page-header__count-label-number,
+.glue-page-header__content .glue-page-header__count-label-text {
+  color: inherit;
+}
+#list-placeholder,
+#tracklist-container {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.tracklist-album, .tracklist-chart, .tracklist-basic, .tracklist-playlist, .tracklist-podcast, .tracklist-popular, .tracklist-station, .tracklist-queue, .tracklist-search {
+  border: none;
+  color: #eee;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+}
+.tl-header th {
+  color: #fff
+}
+.tl-sort-asc::after,
+.tl-sort-desc::after {
+  color: var(--accent_color);
+}
+.tl-header th, .tl-cell {
+  border: none;
+}
+.tl-row .button-play {
+  background-color: rgba(0,0,0,0.6);
+}
+.tl-row .button-play.contextmenu-active,
+.tl-row .button-play:not(:disabled):hover {
+  background-color: rgba(0,0,0,0.9);
+}
+.tl-row .button-play {
+  display: inline-block;
+  opacity: 0;
+  transition: all linear .1s;
+}
+.tl-row:hover .button-play,
+.tl-row.contextmenu-active .button-play {
+  opacity: 1;
+}
+.tl-row:hover .tl-cell,
+.tl-row.contextmenu-active .tl-cell,
+.tl-row.selected .tl-cell,
+.tl-row.current .tl-cell:not(.tl-number), .tl-row.current .tl-cell,
+.tl-row.current .tl-highlight {
+  background-color: transparent;
+}
+.tl-row {
+  position: relative;
+}
+.tracklist .tl-row::after,
+.tracklist-playlist .tl-row::after {
+  position: absolute;
+  opacity: 0; 
+  content: '';
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--accent);
+  display: block;
+  transition: all linear .1s;
+  z-index: -1;
+}
+.tl-row:hover::after,
+.tl-row.contextmenu-active::after {
+  opacity: 0.9;
+}
+.tl-row.selected::after {
+  opacity: 0.8;
+}
+.tl-row.current::after {
+  opacity: 1;
+}
+.tl-explicit .label,
+.tl-premium .label,
+.tl-row:hover .tl-explicit .label,
+.tl-row:hover .tl-premium .label, 
+.tl-row.selection-focus .tl-explicit .label,
+.tl-row.selection-focus .tl-premium .label {
+  border-color: #fff !important;
+  color: #fff !important;
+}
+.sticky-clone .tl-header {
+  background-color: rgba(0,0,0,0.2);
+  backdrop-filter: blur(var(--blur));
+}
+.empty-filtered-content {
+  border: none;
+}

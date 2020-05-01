@@ -1,0 +1,37 @@
+
+/* friends list */
+#view-buddy-list,
+.section-divider-sticky-wrapper,
+.section-divider {
+  background-color: transparent;
+}
+#view-buddy-list {
+  backdrop-filter: blur(var(--blur));
+  background-color: rgba(0, 0, 0, 0.1)
+}
+.section-divider > h3 {
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+}
+.section-divider {
+  border: none;
+}
+.body-container--windows .buddy-list-iframe {
+  margin-top: 40px;
+}
+.buddy-card {
+  background-color: transparent;
+}
+.buddy-card .context-info {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+.friend .context,
+.friend .context a,
+.friend .song-artist,
+.friend .song-artist a,
+.friend .song-title,
+.friend .song-title a {
+  color: #eee;
+}
+[class^=spoticon-]::before, [class*=" spoticon-"]::before {
+  color: #fff;
+}

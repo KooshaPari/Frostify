@@ -1,0 +1,39 @@
+
+/* the stupid headers */
+.GlueHeader__background-color,
+.GlueHeader__background-overlay,
+.GlueHeader__background-scroll-overlay,
+.GlueHeader__top-bar,
+.Header__background-color,
+.Header__background-overlay,
+.Header__background-scroll-overlay,
+.Header__top-bar,
+.glue-page-header__background-color,
+.glue-page-header__background-overlay,
+.glue-page-header__background-scroll-overlay,
+.glue-page-header__top-bar {
+  background: none;
+  background-color: transparent !important;
+}
+.GlueHeader__background-color,
+.GlueHeader--with-active-sticky-header .GlueHeader__sticky,
+.Header__background-color,
+.Header--with-active-sticky-header .Header__sticky,
+.glue-page-header__background-color,
+.glue-page-header--with-active-sticky-header .glue-page-header__sticky {
+  backdrop-filter: blur(var(--blur));
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.GlueHeader__title span,
+.GlueHeader__title h1,
+.Header__title span,
+.Header__title h1,
+.glue-page-header__title span,
+.glue-page-header__title h1 {
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+}
+.GlueHeader--with-active-sticky-header .GlueHeader__background,
+.Header--with-active-sticky-header .Header__background,
+.glue-page-header--with-active-sticky-header .glue-page-header__background {
+  border: none;
+}

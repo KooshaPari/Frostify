@@ -1,0 +1,27 @@
+/* actually styling the media player now */
+/* but first remote listening bar */
+.view-player .remote-playback-bar.visible {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: unset;
+  width: fit-content;
+}
+.view-player .remote-playback-bar.visible p {
+  padding: 0;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+body.remotebar .view-player {
+  height: 88px;
+}
+body.remotebar .view-player .player-bar-wrapper {
+  height: 100%;
+}
+.view-player {
+  background-color: rgba(0,0,0,0.4);
+  border: none;
+}
+/* stuff */
+.view-player .text-container .text-item-container .text-item .scroll-text-container:after {
+  background-image:none;
+}

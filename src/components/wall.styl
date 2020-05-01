@@ -1,0 +1,17 @@
+body[data-multi-select-disabled]::before {
+  content: '';
+  background-image: var(--bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: fixed;
+  display: block;
+  top: 0; left: 0; right: 0; bottom: 0;
+  filter: blur(wb);
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--turn-wall-on);
+}
+body[data-multi-select-disabled] {
+  background-color: var(--bgcolor);
+}
