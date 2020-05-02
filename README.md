@@ -31,7 +31,8 @@ To update:
 
 I know there are a ton of bugs and I am actively working on fixing them. With that being said, please don't spam this repo with issues, as I know they exist. Please only post issues that make the app unusable, that way I can prioritize those.
 I just recently modularized my code using stylus which will make it easier to maintain in the long run and make it easier to fix bugs and add features. Expect plenty of updates.
-#Fork
+
+##Fork
 Primary Bugs: 
 Downloads widget not colored with the theme
 Connected Devices below other text and not themed
