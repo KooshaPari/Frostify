@@ -6,7 +6,7 @@ Removes scrollbars, sets custom background
 also has edits to fix out kinks and make the design cleaner, full screenshot soon
 Contact me through here or the Rainmeter Discord @Ramlord#3904
 ## Spicetify Theme
-!How it looks(https://github.com/PlasmusAng/Frosted/blob/master/screenshot.png)
+![How it looks](https://github.com/PlasmusAng/Frosted/blob/master/screenshot.png)
 #### *Important:*
 
 This theme would have had to overwrite a lot of the colors set by spicetify, so instead I opted to make the theme with the replace_colors config off. If you install this and your spotify is completely black then you didn't read the installation instructions all the way.
