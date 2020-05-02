@@ -1,12 +1,12 @@
 # Frosted
 This theme is meant to be a transparent theme for use with backgrounds and blurred effects.
 
-## Spicetify Theme
-
 ## Fork Info
 Removes scrollbars, sets custom background
 https://i.imgur.com/kYW2H5C.jpg
 also has edits to fix out kinks and make the design cleaner, full screenshot soon
+
+## Spicetify Theme
 
 #### *Important:*
 
