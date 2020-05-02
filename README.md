@@ -2,7 +2,7 @@
 
 ## Spicetify Theme
 
-##Fork Info
+## Fork Info
 Removes scrollbars, sets custom background
 https://i.imgur.com/kYW2H5C.jpg
 also has edits to fix out kinks and make the design cleaner, full screenshot soon
