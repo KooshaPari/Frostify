@@ -3,11 +3,10 @@ This theme is meant to be a transparent theme for use with backgrounds and blurr
 
 ## Fork Info
 Removes scrollbars, sets custom background
-https://i.imgur.com/kYW2H5C.jpg
 also has edits to fix out kinks and make the design cleaner, full screenshot soon
-
+Contact me through here or the Rainmeter Discord @Ramlord#3904
 ## Spicetify Theme
-
+![alt text](https://github.com/PlasmusAng/Frosted/master/blob/screenshot.png?raw=true)
 #### *Important:*
 
 This theme would have had to overwrite a lot of the colors set by spicetify, so instead I opted to make the theme with the replace_colors config off. If you install this and your spotify is completely black then you didn't read the installation instructions all the way.
@@ -38,6 +37,3 @@ I just recently modularized my code using stylus which will make it easier to ma
 
 I am fairly often scouring the [Spectrum group for Spicetify-cli](https://spectrum.chat/spicetify?tab=posts) and that is the best place to reach me for now.
 
-### Lack of Screenshots
-
-It's late and I'm pretty tired and I posted screenshots in the spectrum group, so look there under the Themes > Blurred Background. They are a little outdated but still pretty accurate.
