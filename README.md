@@ -63,4 +63,12 @@ Contact me on Reddit u/PlasmusAng, Here, or on discord Ramlord#0911
 
 I am fairly often scouring the [Spectrum group for Spicetify-cli](https://spectrum.chat/spicetify?tab=posts) and that is the best place to reach me for now.
 
+### Donations
 
+If you really want to(Don't have to at all and I don't expect to get any money donated at all) Donate to my paypal here
+
+[
+  ![Donate with PayPal]
+  (https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)
+]
+(https://www.paypal.com/paypalme/my/profile)
