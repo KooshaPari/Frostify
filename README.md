@@ -1,4 +1,4 @@
-# Frosted
+# Frostify
 This theme is meant to be a transparent theme for use with backgrounds and blurred effects.
 
 ## Fork Info
@@ -16,9 +16,9 @@ This theme would have had to overwrite a lot of the colors set by spicetify, so 
 To install the current version:
 * Install Spicetify CLi
 * Clone/Download this 
-* Rename the Frosted-Master folder to Frosted and make Frosted/Frosted-master to Frosted/(Theme Files)
-* Copy the Frosted folder into your spicetify themes folder
-* Run `spicetify config replace_colors 0 current_theme Frosted`
+* Rename the Frostify-Master folder to Frostify and make Frostify/Frostify-master to Frostify/(Theme Files)
+* Copy the Frostify folder into your spicetify themes folder
+* Run `spicetify config replace_colors 0 current_theme Frostify`
 * Profit
 **Also Remember Play A Song Every Fresh Boot of Spotify In Order to Update The Theme.**
 ### Updating
