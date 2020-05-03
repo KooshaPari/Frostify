@@ -67,12 +67,7 @@ I am fairly often scouring the [Spectrum group for Spicetify-cli](https://spectr
 
 If you really want to(Don't have to at all and I don't expect to get any money donated at all) Donate to my paypal here
 
-[
 
-![Donate with PayPal]
-
-(https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)
-
-]
+![Donate with PayPal](https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)
 
 (https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QT54MSJR6QU7Y)
