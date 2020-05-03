@@ -71,4 +71,4 @@ If you really want to(Don't have to at all and I don't expect to get any money d
   ![Donate with PayPal]
   (https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)
 ]
-(https://www.paypal.com/paypalme/my/profile)
+(https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QT54MSJR6QU7Y)
