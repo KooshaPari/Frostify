@@ -71,5 +71,3 @@ Contact me on Reddit u/PlasmusAng, Here, or on discord Ramlord#0911
 
 I am fairly often scouring the [Spectrum group for Spicetify-cli](https://spectrum.chat/spicetify?tab=posts) and that is the best place to reach me for now.
 
-
-
