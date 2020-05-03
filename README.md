@@ -11,19 +11,35 @@ Contact me through here or the Rainmeter Discord @Ramlord#0911
 
 This theme would have had to overwrite a lot of the colors set by spicetify, so instead I opted to make the theme with the replace_colors config off. If you install this and your spotify is completely black then you didn't read the installation instructions all the way.
 
-**Also Remember To Play A Song Every Fresh Boot of Spotify In Order to Update The Theme.**
+**Also Remember To Play A Song Every Fresh Boot of Spotify In Order to Fully Load The Theme.**
 
 ### Installation
 
-To install the current version:
-* Install Spicetify CLi
-* Clone/Download this 
-* Rename the Frostify-Master folder to Frostify and make Frostify/Frostify-master to Frostify/(Theme Files)
-* Copy the Frostify folder into your spicetify themes folder
-* Run `spicetify config replace_colors 0 current_theme Frostify`
-* Profit
+Props to u/ongoodvxbes for this
 
-**Also Remember To Play A Song Every Fresh Boot of Spotify In Order to Update The Theme.**
+* Use [this guide](https://rainmeter.simplecyber.ml/docs/spicetify) to install Spicetify (thanks u/BenjaminBE4)
+
+* If you followed the guide correctly, you should now have 2 folders at C:/Users/YOURNAME/ (.spicetify & spicetify-cli)
+
+* Download Frostify 
+
+* Unzip then change "Frostify-Master" to "Frostify"
+
+* Copy "Frostify" folder to C:/Users/YOURNAME/.spicetify/Themes
+
+* WIN+R then type Powershell
+
+* Run * "spicetify config replace_colors 0 current_theme Frostify"
+
+* Run Spicetify Backup Apply
+
+* Open the config file (C:/Users/YOURNAME/.spicetify/config)
+
+* Change inject_css to = 1
+
+* Restart Spotify
+
+**Also Remember To Play A Song Every Fresh Boot of Spotify In Order to Fully Load The Theme.**
 
 ### Updating
 
