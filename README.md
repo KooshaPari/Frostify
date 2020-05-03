@@ -10,7 +10,9 @@ Contact me through here or the Rainmeter Discord @Ramlord#0911
 #### *Important:*
 
 This theme would have had to overwrite a lot of the colors set by spicetify, so instead I opted to make the theme with the replace_colors config off. If you install this and your spotify is completely black then you didn't read the installation instructions all the way.
+
 **Also Remember Play A Song Every Fresh Boot of Spotify In Order to Update The Theme.**
+
 ### Installation
 
 To install the current version:
@@ -20,7 +22,9 @@ To install the current version:
 * Copy the Frostify folder into your spicetify themes folder
 * Run `spicetify config replace_colors 0 current_theme Frostify`
 * Profit
+
 **Also Remember Play A Song Every Fresh Boot of Spotify In Order to Update The Theme.**
+
 ### Updating
 
 To update:
