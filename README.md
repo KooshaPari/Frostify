@@ -29,7 +29,7 @@ Props to u/ongoodvxbes for this
 
 * WIN+R then type Powershell
 
-* Run * "spicetify config replace_colors 0 current_theme Frostify"
+* Run "spicetify config replace_colors 0 current_theme Frostify"
 
 * Run Spicetify Backup Apply
 
