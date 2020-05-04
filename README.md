@@ -1,4 +1,5 @@
-![GitHub All Releases](https://img.shields.io/github/downloads/PlasmusAng/Frostify/total)[![GitHub issues](https://img.shields.io/github/issues/PlasmusAng/Frostify)](https://github.com/PlasmusAng/Frostify/issues) [![GitHub license](https://img.shields.io/github/license/PlasmusAng/Frostify)](https://github.com/PlasmusAng/Frostify) [![GitHub stars](https://img.shields.io/github/stars/PlasmusAng/Frostify)](https://github.com/PlasmusAng/Frostify/stargazers)
+![GitHub All Releases](https://img.shields.io/github/downloads/PlasmusAng/Frostify/total) [![GitHub issues](https://img.shields.io/github/issues/PlasmusAng/Frostify)](https://github.com/PlasmusAng/Frostify/issues) [![GitHub license](https://img.shields.io/github/license/PlasmusAng/Frostify)](https://github.com/PlasmusAng/Frostify) [![GitHub stars](https://img.shields.io/github/stars/PlasmusAng/Frostify)](https://github.com/PlasmusAng/Frostify/stargazers)
+
 # Frostify
 This theme is meant to be a transparent theme for use with backgrounds and blurred effects.
 
@@ -12,7 +13,7 @@ If you really want to(Don't have to at all and I don't expect to get any money d
 ## Fork Info
 Removes scrollbars, sets custom background
 also has edits to fix out kinks and make the design cleaner, full screenshot soon
-Contact me through here or the Rainmeter Discord @Ramlord#0911
+Contact me through here or the [Rainmeter Discord](https://discord.gg/rainmeter) @Ramlord#0911
 #### *Important:*
 
 This theme would have had to overwrite a lot of the colors set by spicetify, so instead I opted to make the theme with the replace_colors config off. If you install this and your spotify is completely black then you didn't read the installation instructions all the way.
@@ -23,25 +24,25 @@ This theme would have had to overwrite a lot of the colors set by spicetify, so 
 
 Props to u/ongoodvxbes for this
 
-* Use [this guide](https://rainmeter.simplecyber.ml/docs/spicetify) to install Spicetify (thanks u/BenjaminBE4)
+* Use [this guide](https://rainmeter.simplecyber.ml/docs/spicetify) to install Spicetify (thanks [u/BenjaminBE4](https://reddit.com/u/BenjaminBE4))
 
-* If you followed the guide correctly, you should now have 2 folders at C:/Users/YOURNAME/ (.spicetify & spicetify-cli)
+* If you followed the guide correctly, you should now have 2 folders at `C:/Users/%USERNAME%/` (`.spicetify` & `spicetify-cli`)
 
 * Download [Frostify](https://github.com/PlasmusAng/Frostify/releases)
 
-* Unzip then change "Frostify-Master" to "Frostify"
+* Unzip then change `Frostify-Master` to `Frostify`
 
-* Copy "Frostify" folder to C:/Users/YOURNAME/.spicetify/Themes
+* Copy `Frostify` folder to `C:/Users/%USERNAME%/.spicetify/Themes`
 
-* WIN+R then type Powershell
+* <kbd>WIN</kbd>+<kbd>R</kbd> then type `Powershell`
 
-* Run "spicetify config replace_colors 0 current_theme Frostify"
+* Run `spicetify config replace_colors 0 current_theme Frostify`
 
-* Run Spicetify Backup Apply
+* Run `Spicetify backup apply`
 
-* Open the config file (C:/Users/YOURNAME/.spicetify/config)
+* Open the config file `C:/Users/%USERNAME%/.spicetify/config`
 
-* Change inject_css to = 1
+* Change `inject_css` to `1`
 
 * Restart Spotify
 
