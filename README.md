@@ -52,11 +52,14 @@ Props to u/ongoodvxbes for this
 
 **Also Remember To Play A Song Every Fresh Boot of Spotify In Order to Fully Load The Theme.**
 
+**If you edit the css make sure to run Spicetify Update Apply to both build the css and apply**
+
 ### Updating
 
 To update:
 
 * Open a terminal in the folder location and then just `git pull`
+* Then Run Spicetify Update Apply
 * If for some reason this fails, just re-install
 
 ### Bugs & Issues
