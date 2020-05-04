@@ -13,11 +13,6 @@ If you really want to(Don't have to at all and I don't expect to get any money d
 Removes scrollbars, sets custom background
 also has edits to fix out kinks and make the design cleaner, full screenshot soon
 Contact me through here or the Rainmeter Discord @Ramlord#0911
-## Spicetify Theme
-![How it looks](https://github.com/PlasmusAng/Frosted/blob/master/screenshot.png)
-
-![Smooth Gradients](https://media.giphy.com/media/W4WS1dL0pqHwevx6E9/giphy.gif) ![Stunning Animations](https://media.giphy.com/media/QaYmTbpb1v4JlLNUH4/giphy.gif)
-
 #### *Important:*
 
 This theme would have had to overwrite a lot of the colors set by spicetify, so instead I opted to make the theme with the replace_colors config off. If you install this and your spotify is completely black then you didn't read the installation instructions all the way.
@@ -76,3 +71,9 @@ Contact me on Reddit u/PlasmusAng, Here, or on discord Ramlord#0911
 
 
 I am fairly often scouring the [Spectrum group for Spicetify-cli](https://spectrum.chat/spicetify?tab=posts) and that is the best place to reach me for now.
+## Spicetify Theme
+![How it looks](https://github.com/PlasmusAng/Frosted/blob/master/screenshot.png)
+
+![Smooth Gradients](https://media.giphy.com/media/W4WS1dL0pqHwevx6E9/giphy.gif) ![Stunning Animations](https://media.giphy.com/media/QaYmTbpb1v4JlLNUH4/giphy.gif)
+
+
