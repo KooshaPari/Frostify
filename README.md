@@ -16,9 +16,7 @@ Contact me through here or the Rainmeter Discord @Ramlord#0911
 ## Spicetify Theme
 ![How it looks](https://github.com/PlasmusAng/Frosted/blob/master/screenshot.png)
 
-![Smooth Gradients](https://media.giphy.com/media/W4WS1dL0pqHwevx6E9/giphy.gif)
-
-![Stunning Animations](https://media.giphy.com/media/QaYmTbpb1v4JlLNUH4/giphy.gif)
+![Smooth Gradients](https://media.giphy.com/media/W4WS1dL0pqHwevx6E9/giphy.gif) ![Stunning Animations](https://media.giphy.com/media/QaYmTbpb1v4JlLNUH4/giphy.gif)
 
 #### *Important:*
 
