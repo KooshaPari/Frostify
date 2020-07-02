@@ -58,6 +58,10 @@ To update:
 * Then Run Spicetify Update Apply
 * If for some reason this fails, just re-install
 
+### Change Background
+If you have a file you want to use upload it to github and make sure the link you use is to the file(has a .jpg or .png at the end of the link)
+Go to **background-image: url** and in the parenthesis between the apostraphes insert the link and run **spictify update backup apply**
+
 ### Bugs & Issues
 
 I know there are a ton of bugs and I am actively working on fixing them. With that being said, please don't spam this repo with issues, as I know they exist. Please only post issues that make the app unusable, that way I can prioritize those.
