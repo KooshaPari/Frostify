@@ -59,7 +59,7 @@ To update:
 * If for some reason this fails, just re-install
 
 ### Change Background
-If you have a file you want to use upload it to imgur and make sure the link you use is to the file(has a .jpg or .png at the end of the link)
+If you have a file you want to use upload it to [imgur](https://imgur.com/) and make sure the link you use is to the file(has a .jpg or .png at the end of the link)
 Go to **background-image: url** and in the parenthesis between the apostraphes insert the link and run **spictify update backup apply**
 
 ### Bugs & Issues
