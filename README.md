@@ -24,7 +24,7 @@ This theme would have had to overwrite a lot of the colors set by spicetify, so 
 
 Props to u/ongoodvxbes for this
 
-* Use [this guide](https://rainmeter.simplecyber.ml/docs/spicetify) to install Spicetify (thanks [u/BenjaminBE4](https://reddit.com/u/BenjaminBE4))
+* Use [this guide](https://github.com/khanhas/spicetify-cli/wiki/Installation) to install Spicetify (thanks [u/BenjaminBE4](https://reddit.com/u/BenjaminBE4))
 
 * If you followed the guide correctly, you should now have 2 folders at `C:/Users/%USERNAME%/` (`.spicetify` & `spicetify-cli`)
 
