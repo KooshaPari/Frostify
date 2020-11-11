@@ -1,5 +1,5 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/PlasmusAng/Frostify/total) [![GitHub issues](https://img.shields.io/github/issues/Ramlord/Frostify)](https://github.com/PlasmusAng/Frostify/issues) [![GitHub license](https://img.shields.io/github/license/PlasmusAng/Frostify)](https://github.com/PlasmusAng/Frostify) [![GitHub stars](https://img.shields.io/github/stars/PlasmusAng/Frostify)](https://github.com/PlasmusAng/Frostify/stargazers)
-
+# Development Paused, Discord Theme and Spotify Theme inspired by Material Design Coming Soon
 # Frostify
 This theme is meant to be a transparent theme for use with backgrounds and blurred effects.
 
