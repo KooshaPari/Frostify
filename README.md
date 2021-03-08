@@ -3,13 +3,6 @@
 # Frostify
 This theme is meant to be a transparent theme for use with backgrounds and blurred effects.
 
-
-### Donations
-
-If you really want to(Don't have to at all and I don't expect to get any money donated at all) Donate to my paypal here
-
-[![Donate with PayPal](https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)](https://www.paypal.me/plasmusang)
-
 ## Fork Info
 Removes scrollbars, sets custom background
 also has edits to fix out kinks and make the design cleaner, full screenshot soon
