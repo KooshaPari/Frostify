@@ -56,20 +56,13 @@ To update:
 * Go to `background-image: url` 
 * In the parenthesis between the apostraphes Insert the link and run `spictify update backup apply`
 
-### Bugs & Issues
-
-I know there are a ton of bugs and I am actively working on fixing them. With that being said, please don't spam this repo with issues, as I know they exist. Please only post issues that make the app unusable, that way I can prioritize those.
-I just recently modularized my code using stylus which will make it easier to maintain in the long run and make it easier to fix bugs and add features. Expect plenty of updates.
 
 *Fork Primary Bugs:* 
 Downloads widget not colored with the theme
 Connected Devices below other text and not themed
 
 ### Communication
-Contact me on Reddit u/PlasmusAng, Here, or on discord Ramlord#0911
-
-
-I am fairly often scouring the [Spectrum group for Spicetify-cli](https://spectrum.chat/spicetify?tab=posts) and that is the best place to reach me for now.
+Contact me on Reddit u/PlasmusAng, Here, or on discord Ramlord
 ## Spicetify Theme
 ![How it looks](https://github.com/PlasmusAng/Frosted/blob/master/screenshot.png)
 
