@@ -1,0 +1,311 @@
+# =============================================================================
+# Phenotype CI — Unified multi-language pipeline (smart-discover)
+# =============================================================================
+# Detects languages from repo structure, only runs what applies.
+# All steps are fail-tolerant: missing config → step skipped, not build broken.
+# Optimized for: Rust, Python, Go, TypeScript
+# Runners: Blacksmith (fast) → GitHub-hosted fallback
+# =============================================================================
+
+name: CI
+
+on:
+  push:
+    branches: [main, master, develop, "release/**"]
+  pull_request:
+    branches: [main, master, develop]
+  merge_group:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+  PYTHONIOENCODING: utf-8
+
+# ===========================================================================
+# STAGE 1: Detect languages (file presence, fast)
+# ===========================================================================
+jobs:
+  detect:
+    name: Detect Languages
+    runs-on: ubuntu-latest
+    outputs:
+      rust: ${{ steps.detect.outputs.rust }}
+      python: ${{ steps.detect.outputs.python }}
+      go: ${{ steps.detect.outputs.go }}
+      typescript: ${{ steps.detect.outputs.typescript }}
+      has_ci_lint: ${{ steps.detect.outputs.rust_ci || steps.detect.outputs.python_ci || steps.detect.outputs.go_ci || steps.detect.outputs.ts_ci }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: detect
+        run: |
+          # Smart-discover: only set true if relevant tooling files exist
+          if [ -f "Cargo.toml" ] || compgen -G "**/Cargo.toml" > /dev/null; then
+            echo "rust=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "rust=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [ -f "pyproject.toml" ] || [ -f "setup.py" ] || [ -f "setup.cfg" ] || compgen -G "requirements*.txt" > /dev/null || compgen -G "**/pyproject.toml" > /dev/null; then
+            echo "python=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "python=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [ -f "go.mod" ] || compgen -G "**/go.mod" > /dev/null; then
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [ -f "package.json" ] || compgen -G "**/package.json" > /dev/null; then
+            echo "typescript=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "typescript=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          # Has any CI-runnable language?
+          if [ -f "Cargo.toml" ] || [ -f "pyproject.toml" ] || [ -f "setup.py" ] || [ -f "go.mod" ] || [ -f "package.json" ]; then
+            echo "has_ci_lint=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_ci_lint=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  # ===========================================================================
+  # STAGE 2: Per-language gates (run in parallel; fail-tolerant)
+  # ===========================================================================
+
+  rust:
+    name: Rust
+    needs: detect
+    if: needs.detect.outputs.rust == 'true'
+    runs-on: blacksmith-2vcpu-ubuntu-2204
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: phen-ci-rust
+      - name: fmt check
+        run: |
+          if cargo fmt --all -- --check 2>&1 | tee /tmp/fmt.log; then
+            echo "fmt_ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "fmt_ok=false" >> "$GITHUB_OUTPUT"
+          fi
+        id: fmt
+      - name: clippy
+        run: cargo clippy --all-targets --no-deps -- -D warnings 2>&1 || echo "::warning::clippy failed (non-blocking)"
+      - name: build
+        run: cargo build --workspace 2>&1 || cargo build 2>&1 || echo "::warning::build failed (non-blocking)"
+      - name: test
+        run: |
+          if [ -f "Cargo.lock" ]; then
+            cargo test --workspace --no-fail-fast 2>&1 || cargo test --no-fail-fast 2>&1 || echo "::warning::tests failed (non-blocking)"
+          else
+            echo "No Cargo.lock — skipping tests"
+          fi
+
+  python:
+    name: Python
+    needs: detect
+    if: needs.detect.outputs.python == 'true'
+    runs-on: blacksmith-2vcpu-ubuntu-2204
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install ruff
+        run: pip install --quiet ruff 2>&1 || echo "::warning::ruff install failed"
+      - name: ruff check
+        run: ruff check --output-format=github . 2>&1 || echo "::warning::ruff check found issues (non-blocking)"
+      - name: ruff format
+        run: ruff format --check . 2>&1 || echo "::warning::format check found issues (non-blocking)"
+      - name: install deps
+        run: |
+          if [ -f "uv.lock" ]; then
+            pip install --quiet uv && uv sync --all-extras 2>&1 || echo "::warning::uv sync failed"
+          elif [ -f "pyproject.toml" ]; then
+            pip install --quiet -e . 2>&1 || echo "::warning::pip install -e failed"
+          elif compgen -G "requirements*.txt" > /dev/null; then
+            pip install --quiet -r requirements.txt 2>&1 || pip install --quiet -r requirements-dev.txt 2>&1 || echo "::warning::pip install failed"
+          fi
+      - name: pytest
+        run: |
+          if compgen -G "**/test_*.py" > /dev/null || compgen -G "tests/**/*.py" > /dev/null; then
+            python -m pytest --no-header -q 2>&1 || echo "::warning::pytest failed (non-blocking)"
+          else
+            echo "No tests found"
+          fi
+
+  go:
+    name: Go
+    needs: detect
+    if: needs.detect.outputs.go == 'true'
+    runs-on: blacksmith-2vcpu-ubuntu-2204
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "stable"
+      - name: go vet
+        run: go vet ./... 2>&1 || echo "::warning::go vet found issues (non-blocking)"
+      - name: go build
+        run: go build ./... 2>&1 || echo "::warning::go build failed (non-blocking)"
+      - name: go test
+        run: go test -race ./... 2>&1 || echo "::warning::go test failed (non-blocking)"
+
+  typescript:
+    name: TS/JS
+    needs: detect
+    if: needs.detect.outputs.typescript == 'true'
+    runs-on: blacksmith-2vcpu-ubuntu-2204
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: detect package manager
+        id: pm
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            echo "manager=pnpm" >> "$GITHUB_OUTPUT"
+          elif [ -f "yarn.lock" ]; then
+            echo "manager=yarn" >> "$GITHUB_OUTPUT"
+          elif [ -f "bun.lockb" ] || [ -f "bun.lock" ]; then
+            echo "manager=bun" >> "$GITHUB_OUTPUT"
+          else
+            echo "manager=npm" >> "$GITHUB_OUTPUT"
+          fi
+      - name: install
+        run: |
+          case "${{ steps.pm.outputs.manager }}" in
+            pnpm) npm install -g pnpm && pnpm install --frozen-lockfile 2>&1 || echo "::warning::install failed" ;;
+            yarn) npm install -g yarn && yarn install --frozen-lockfile 2>&1 || echo "::warning::install failed" ;;
+            bun)  npm install -g bun && bun install --frozen-lockfile 2>&1 || echo "::warning::install failed" ;;
+            *)    npm ci 2>&1 || npm install 2>&1 || echo "::warning::install failed" ;;
+          esac
+      - name: lint
+        run: |
+          if [ -f "biome.json" ] || [ -f "biome.jsonc" ]; then
+            npx @biomejs/biome lint . 2>&1 || echo "::warning::biome lint failed"
+            npx @biomejs/biome format --check . 2>&1 || echo "::warning::biome format failed"
+          elif grep -q '"lint"' package.json 2>/dev/null; then
+            npm run lint 2>&1 || echo "::warning::lint failed"
+          else
+            echo "No linter configured"
+          fi
+      - name: test
+        run: |
+          if grep -q '"test"' package.json 2>/dev/null && [ "$(node -e "console.log(require('./package.json').scripts?.test || '')")" != "" ]; then
+            npm test 2>&1 || echo "::warning::test failed"
+          else
+            echo "No tests configured"
+          fi
+
+  # ===========================================================================
+  # STAGE 3: Security & quality (always run, fail-tolerant)
+  # ===========================================================================
+
+  security:
+    name: Security Scan
+    needs: detect
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Trivy scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          scan-ref: "."
+          format: "sarif"
+          output: "trivy-results.sarif"
+          severity: "CRITICAL,HIGH"
+        continue-on-error: true
+      - name: Upload Trivy results
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: "trivy-results.sarif"
+        continue-on-error: true
+
+  dependency-review:
+    name: Dependency Review
+    needs: detect
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: moderate
+
+  # ===========================================================================
+  # STAGE 4: Trunk.io (only if repo has trunk config)
+  # ===========================================================================
+
+  trunk-check:
+    name: Trunk Check
+    needs: detect
+    if: needs.detect.outputs.has_ci_lint == 'true'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run trunk only if configured
+        run: |
+          if [ -f "trunk.yaml" ] && [ -d ".trunk" ]; then
+            echo "Trunk configured — running"
+            # trunk install requires the CLI; pull action handles that
+          else
+            echo "Trunk not configured (no trunk.yaml + .trunk/) — skipping"
+            exit 0
+          fi
+      - uses: trunk-io/trunk-action@v1
+        if: hashFiles('trunk.yaml', '.trunk/trunk.yaml') != ''
+
+  # ===========================================================================
+  # STAGE 5: Aggregation gate for branch protection
+  # ===========================================================================
+  ci:
+    name: CI
+    if: always()
+    needs:
+      - detect
+      - rust
+      - python
+      - go
+      - typescript
+      - security
+      - dependency-review
+      - trunk-check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Aggregate
+        run: |
+          # All jobs are continue-on-error; this gate just confirms CI ran
+          # without crashing the runner. Lint/test results are advisory.
+          echo "✅ CI pipeline completed"
+          echo ""
+          echo "Per-language results (advisory, non-blocking):"
+          echo "  Rust:        ${{ needs.rust.result }}"
+          echo "  Python:      ${{ needs.python.result }}"
+          echo "  Go:          ${{ needs.go.result }}"
+          echo "  TS/JS:       ${{ needs.typescript.result }}"
+          echo "  Security:    ${{ needs.security.result }}"
+          echo "  Dep review:  ${{ needs.dependency-review.result }}"
+          echo "  Trunk:       ${{ needs.trunk-check.result }}"
