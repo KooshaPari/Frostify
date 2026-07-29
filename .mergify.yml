@@ -1,0 +1,138 @@
+# Mergify Configuration — Optimized for multi-language monorepos
+# Docs: https://docs.mergify.com/
+
+pull_request_rules:
+  # Auto-merge when all CI checks pass and PR is approved
+  - name: Auto-merge when approved + CI green
+    conditions:
+      - "#review-requested=0"
+      - "#approved-reviews-by>=1"
+      - check-success=ci
+      - check-success=lint
+      - check-success=typecheck
+      - check-success=test
+      - -conflict
+      - -closed
+    actions:
+      merge:
+        method: squash
+        commit_message_template: |
+          {{ title }} (#{{ number }})
+          
+          Co-authored-by: {{ author }}
+      post_merge:
+        action: close
+
+  # Auto-merge dependabot/Renovate PRs when CI passes
+  - name: Auto-merge dependency updates
+    conditions:
+      - author=dependabot[bot] | renovate[bot]
+      - check-success=ci
+      - -conflict
+      - -closed
+    actions:
+      merge:
+        method: squash
+        commit_message_template: |
+          {{ title }} (#{{ number }})
+          
+          Co-authored-by: {{ author }}
+      post_merge:
+        action: close
+
+  # Auto-merge bot PRs (CI configs, formatting) when CI passes
+  - name: Auto-merge bot housekeeping PRs
+    conditions:
+      - author=trunk-io[bot] | mergify[bot] | github-actions[bot]
+      - check-success=ci
+      - check-success=lint
+      - -conflict
+      - -closed
+    actions:
+      merge:
+        method: squash
+
+  # Add reviewers based on changed paths
+  - name: Request review from team
+    conditions:
+      - -closed
+      - -draft
+    actions:
+      request_reviews:
+        teams:
+          - phenotype/core
+        github_accounts:
+          - KooshaPari
+
+  # Label PRs based on changed files
+  - name: Label Python changes
+    conditions:
+      - files~=\.py$
+    actions:
+      label:
+        add:
+          - python
+
+  - name: Label Rust changes
+    conditions:
+      - files~=\.rs$|Cargo\.
+    actions:
+      label:
+        add:
+          - rust
+
+  - name: Label Go changes
+    conditions:
+      - files~=\.go$|go\.
+    actions:
+      label:
+        add:
+          - go
+
+  - name: Label TypeScript changes
+    conditions:
+      - files~=\.ts$|\.tsx$|package\.json
+    actions:
+      label:
+        add:
+          - typescript
+
+  # Close stale PRs after 30 days
+  - name: Close stale PRs
+    conditions:
+      - -closed
+      - -draft
+      - age>=30d
+      - "#review-requested=0"
+    actions:
+      comment:
+        message: >
+          This PR has been automatically closed after 30 days of inactivity.
+          Feel free to reopen if still relevant.
+      close: {}
+
+  # Warn on large PRs
+  - name: Warn on large PRs
+    conditions:
+      - -closed
+      - -draft
+      - "#files>20"
+    actions:
+      comment:
+        message: >
+          **Large PR Alert**: This PR touches {{ number }} files.
+          Consider splitting into smaller PRs for easier review.
+
+  # Add ready-to-merge label when all checks pass
+  - name: Add ready-to-merge label
+    conditions:
+      - -closed
+      - -draft
+      - check-success=ci
+      - check-success=lint
+      - check-success=test
+      - "#approved-reviews-by>=1"
+    actions:
+      label:
+        add:
+          - ready-to-merge
