@@ -1,0 +1,59 @@
+# Pull secrets from Infisical into CI
+# Requires: INFISICAL_TOKEN (machine identity service token) stored in repo secrets
+# Docs: https://infisical.com/docs/cli/usage
+
+name: Infisical Sync
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    paths:
+      - '.github/workflows/infisical.yml'
+  pull_request:
+
+jobs:
+  sync-secrets:
+    name: Pull secrets from Infisical
+    runs-on: blacksmith-2vcpu-ubuntu-2204
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Infisical CLI
+        run: |
+          curl -1sLf "https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.deb.sh" | sudo -E bash
+          sudo apt-get install -y infisical
+
+      - name: Pull secrets to .env
+        env:
+          INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
+          INFISICAL_PROJECT_ID: ${{ vars.INFISICAL_PROJECT_ID || secrets.INFISICAL_PROJECT_ID || '8efe392e-56a6-4c3c-89f9-8141183dd7e8' }}
+          INFISICAL_ENV: ${{ vars.INFISICAL_ENV || github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/staging' && 'staging' || 'dev' }}
+        run: |
+          # Validate required secrets are present
+          if [ -z "$INFISICAL_TOKEN" ]; then
+            echo "::error::INFISICAL_TOKEN secret not configured in repo settings"
+            exit 1
+          fi
+          if [ -z "$INFISICAL_PROJECT_ID" ]; then
+            echo "::error::INFISICAL_PROJECT_ID var or secret not set"
+            exit 1
+          fi
+
+          # Pull all secrets from the configured env into .env
+          infisical run \
+            --projectId "$INFISICAL_PROJECT_ID" \
+            --env "$INFISICAL_ENV" \
+            --token "$INFISICAL_TOKEN" \
+            -- bash -c 'echo "Secrets loaded into env successfully" && env | grep -E "^[A-Z_]+=" | grep -v -E "^(PATH|HOME|PWD|SHELL|HOSTNAME|TERM|GITHUB_|RUNNER_|CARGO_|DEPLOY_|INPUT_|IMAGE_|ACTIONS_|STEP_|BOOT_|GRUB_|LS_COLORS|INVOCATION_ID|JOURNAL_)" | head -20'
+
+      - name: Upload secrets as artifact (debug only, never published)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: infisical-debug
+          path: .env
+          retention-days: 1
